@@ -46,7 +46,7 @@ jobs:
           git commit --allow-empty -m "empty commit" # add empty commit so when squashed the history will show PR title
           git add firefox-ios/Shared/Extensions/URLExtensions.swift
           echo "changes_detected=true" >> $GITHUB_ENV
-          datetime=$(date +%Y%m%d)
+          datetime=$(date +%Y%m%d%H%M%S)
           echo "date=$datetime" >> $GITHUB_ENV
         fi
 
@@ -60,9 +60,8 @@ jobs:
         #   4. Increments the highest version number found by 1 for the next release.
         #   5. Sets a default value if no matching release branches are found.
         
-        git fetch --all
-        highest_version=$(git branch -r | \
-          grep 'release/v' | \
+        highest_version=$(git ls-remote --heads origin | \
+          grep 'refs/heads/release/v' | \
           awk -F'/' '{print $NF}' | \
           sort -Vr | \
           head -n 1 | \
