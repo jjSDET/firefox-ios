@@ -62,10 +62,10 @@ jobs:
         
         output=$(bash test-fixtures/ci/get-next-pr-version)
         echo "$output"
-        test_next_version=$(echo "$output" | tail -1 | cut -d ' ' -f 3)
-        echo "Next version is v${test_next_version}"
+        next_version=$(echo "$output" | tail -1 | cut -d ' ' -f 3)
+        echo "Next version is v${next_version}"
+        echo "next_version=${next_version}" >> $GITHUB_ENV
         echo "is it in github env: ${{ env.next_version }}"
-        echo "test_next_version=${test_next_version}" >> $GITHUB_ENV
 
     - name: Create Pull Request
       if: env.changes_detected == 'true'
