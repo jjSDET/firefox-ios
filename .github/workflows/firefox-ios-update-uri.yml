@@ -53,16 +53,13 @@ jobs:
     - name: Determine PR Version Number
       id: versioning
       run: |
-        # This script performs the following operations:
-        #   1. Fetches the list of branches from the remote repository.
-        #   2. Filters for branches that follow the 'release/v*' pattern.
-        #   3. Strips out any decimal points in version numbers (e.g., converts 'v123.1' to 'v123').
-        #   4. Increments the highest version number found by 1 for the next release.
-        #   5. Sets a default value if no matching release branches are found.
+        # This step is used to determine the next version number for the PR title
+        # The output includes debugging for the piped commands that generate
+        # the version number and the last line is the version number itself
         
         output=$(bash test-fixtures/ci/get-next-pr-version)
         echo "$output"
-        next_version=$(echo "$output" | tail -n 1)
+        next_version=$(echo "$output" | tail -n 1) # get the last line of the output
         echo "Next version is: v${next_version}"
         echo "next_version=${next_version}" >> $GITHUB_ENV
 
