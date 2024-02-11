@@ -62,8 +62,8 @@ jobs:
         
         output=$(bash test-fixtures/ci/get-next-pr-version)
         echo "$output"
-        next_version=$(echo "$output" | tail -1 | cut -d ' ' -f 3)
-        echo "Next version from Github Action is: v${next_version}"
+        next_version=$(echo "$output" | tail -n 1)
+        echo "Next version is: v${next_version}"
         echo "next_version=${next_version}" >> $GITHUB_ENV
 
     - name: Create Pull Request
