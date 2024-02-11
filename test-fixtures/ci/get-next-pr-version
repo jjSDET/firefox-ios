@@ -70,4 +70,7 @@ done
 # Echo the version captured
 echo "Current version: ${my_version}"
 next_version=$((my_version + 1))
-echo "Next version from get-next-pr-version: ${next_version}"
+
+# DO NOT MODIFY THE OUTPUT FORMAT
+# THIS IS USED BY GITHUB ACTIONS
+echo "${next_version}"
