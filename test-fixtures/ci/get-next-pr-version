@@ -51,5 +51,4 @@ done
 # Echo the version captured
 echo "Captured version: ${my_version}"
 next_version=$((my_version + 1))
-echo "${next_version}" >> $GITHUB_ENV
 echo "Next version: ${next_version}"
