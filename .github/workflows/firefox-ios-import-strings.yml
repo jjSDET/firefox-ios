@@ -20,7 +20,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
         persist-credentials: false
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.TEST_GITHUB_ACTION_TOKEN }}
         ref: ${{ github.event.inputs.branchName }}
 
     - name: Select Xcode ${{ matrix.xcode }}
@@ -75,7 +75,7 @@ jobs:
       with:
         author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
         committer: GitHub <noreply@github.com>
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.TEST_GITHUB_ACTION_TOKEN }}
         commit-message: ${{ env.pr_title }}
         title: "Localize [v${{ env.next_version }}] String import ${{ env.current_date }}"
         branch: ${{ env.branch_name }}
